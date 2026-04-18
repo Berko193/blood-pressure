@@ -382,6 +382,63 @@
     .record .delete-btn:active { opacity: 1; background: var(--red-bg); color: var(--red); }
   }
 
+  /* ── toggle past button ── */
+  .toggle-past-btn {
+    width: 100%;
+    height: 40px;
+    border: none;
+    background: transparent;
+    color: var(--sky-600);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    touch-action: manipulation;
+  }
+
+  .toggle-past-btn:active {
+    opacity: 0.7;
+  }
+
+  .past-form {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--slate-100);
+  }
+
+  .past-form input[type="date"],
+  .past-form input[type="time"] {
+    width: 100%;
+    height: 52px;
+    border: 1.5px solid var(--slate-200);
+    border-radius: 10px;
+    padding: 0 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--slate-800);
+    background: var(--slate-50);
+    outline: none;
+    transition: all 0.2s ease;
+    -webkit-appearance: none;
+    touch-action: manipulation;
+  }
+
+  .past-form input[type="date"]:focus,
+  .past-form input[type="time"]:focus {
+    border-color: var(--sky-400);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
+  }
+
+  .past-save-btn {
+    background: linear-gradient(135deg, var(--sky-600), var(--sky-700)) !important;
+    margin-top: 6px;
+  }
+
   /* ── action buttons ── */
   .action-row {
     display: flex;
@@ -510,6 +567,31 @@
       </div>
     </div>
     <button class="save-btn" id="saveBtn" type="button">Save Reading</button>
+    <button class="toggle-past-btn" id="togglePastBtn" type="button">+ Add Past Record</button>
+    <div class="past-form" id="pastForm" style="display:none;">
+      <div class="input-row">
+        <div class="field">
+          <label>Date</label>
+          <input type="date" id="pastDate" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>Time (24H)</label>
+          <input type="time" id="pastTime" autocomplete="off">
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="field">
+          <label>Systolic</label>
+          <input type="number" id="pastSys" placeholder="120" inputmode="numeric" autocomplete="off">
+        </div>
+        <div class="slash">/</div>
+        <div class="field">
+          <label>Diastolic</label>
+          <input type="number" id="pastDia" placeholder="80" inputmode="numeric" autocomplete="off">
+        </div>
+      </div>
+      <button class="save-btn past-save-btn" id="savePastBtn" type="button">Save Past Record</button>
+    </div>
   </div>
 
   <div class="card" id="recordsCard" style="display:none;">
@@ -641,6 +723,52 @@
     render();
     showToast('Reading deleted');
   }
+
+  // Toggle past form
+  const togglePastBtn = document.getElementById('togglePastBtn');
+  const pastForm = document.getElementById('pastForm');
+  const pastDate = document.getElementById('pastDate');
+  const pastTime = document.getElementById('pastTime');
+  const pastSys = document.getElementById('pastSys');
+  const pastDia = document.getElementById('pastDia');
+
+  togglePastBtn.addEventListener('click', () => {
+    const open = pastForm.style.display === 'none';
+    pastForm.style.display = open ? 'block' : 'none';
+    togglePastBtn.textContent = open ? '− Cancel' : '+ Add Past Record';
+    if (open) pastDate.value = getTodayStr();
+  });
+  togglePastBtn.addEventListener('touchend', (e) => { e.preventDefault(); togglePastBtn.click(); });
+
+  // Save past record
+  function handleSavePast() {
+    const sys = parseInt(pastSys.value, 10);
+    const dia = parseInt(pastDia.value, 10);
+    const date = pastDate.value;
+    const time = pastTime.value;
+    if (!date || !time || isNaN(sys) || isNaN(dia)) {
+      showToast('Fill all fields');
+      return;
+    }
+    const records = getRecords();
+    records.push({ date, time, sys, dia });
+    records.sort((a, b) => {
+      const da = a.date + (a.time || '00:00');
+      const db = b.date + (b.time || '00:00');
+      return db.localeCompare(da);
+    });
+    saveRecords(records);
+    render();
+    pastSys.value = '';
+    pastDia.value = '';
+    pastTime.value = '';
+    pastForm.style.display = 'none';
+    togglePastBtn.textContent = '+ Add Past Record';
+    showToast('Past record saved');
+  }
+
+  document.getElementById('savePastBtn').addEventListener('click', handleSavePast);
+  document.getElementById('savePastBtn').addEventListener('touchend', (e) => { e.preventDefault(); handleSavePast(); });
 
   // Enter key saves
   function handleKey(e) {
