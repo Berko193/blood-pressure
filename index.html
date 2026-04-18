@@ -528,6 +528,24 @@
     background: var(--red-bg);
   }
 
+  /* ── backup card ── */
+  .backup-card .records-header { margin-bottom: 12px; }
+
+  .restore-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: var(--green-bg) !important;
+    border-color: #a7f3d0 !important;
+    color: var(--green) !important;
+  }
+
+  .restore-label:active {
+    transform: scale(0.96);
+    opacity: 0.8;
+  }
+
   /* ── legend ── */
   .legend {
     display: flex;
@@ -657,6 +675,19 @@
       <div class="legend-item"><div class="ldot green"></div>Normal</div>
       <div class="legend-item"><div class="ldot yellow"></div>Elevated</div>
       <div class="legend-item"><div class="ldot red"></div>High</div>
+    </div>
+  </div>
+
+  <div class="card backup-card">
+    <div class="records-header">
+      <h2>Backup</h2>
+    </div>
+    <div class="action-row">
+      <button class="action-btn" id="backupBtn" type="button">Download Backup</button>
+      <label class="action-btn restore-label" id="restoreLabel">
+        Load Backup
+        <input type="file" id="restoreFile" accept=".json" style="display:none">
+      </label>
     </div>
   </div>
 </div>
@@ -852,6 +883,47 @@
   function handleKey(e) { if (e.key === 'Enter') saveBtn.click(); }
   sysInput.addEventListener('keydown', handleKey);
   diaInput.addEventListener('keydown', handleKey);
+
+  // Backup - download JSON file
+  function handleBackup() {
+    const records = getRecords();
+    if (records.length === 0) { showToast('No records to backup'); return; }
+    const blob = new Blob([JSON.stringify(records, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'bp-backup-' + getTodayStr() + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('Backup downloaded');
+  }
+
+  document.getElementById('backupBtn').addEventListener('click', handleBackup);
+  document.getElementById('backupBtn').addEventListener('touchend', function(e) { e.preventDefault(); handleBackup(); });
+
+  // Restore - load JSON file
+  document.getElementById('restoreFile').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      try {
+        const data = JSON.parse(ev.target.result);
+        if (!Array.isArray(data)) { showToast('Invalid backup file'); return; }
+        const existing = getRecords();
+        if (existing.length > 0 && !confirm('This will replace your current ' + existing.length + ' records. Continue?')) return;
+        saveRecords(data);
+        render();
+        showToast(data.length + ' records restored');
+      } catch {
+        showToast('Invalid backup file');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  });
 
   render();
 
