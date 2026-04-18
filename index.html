@@ -5,53 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#f8fafc">
+<meta name="theme-color" content="#fdf2f8">
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230ea5e9' width='100' height='100' rx='20'/><text x='50' y='68' text-anchor='middle' font-size='50' fill='white'>BP</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23ec4899' width='100' height='100' rx='20'/><text x='50' y='68' text-anchor='middle' font-size='50' fill='white'>BP</text></svg>">
 <title>BP Tracker</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   button, input { touch-action: manipulation; }
 
   :root {
-    --slate-50: #f8fafc;
-    --slate-100: #f1f5f9;
-    --slate-200: #e2e8f0;
-    --slate-300: #cbd5e1;
-    --slate-400: #94a3b8;
-    --slate-500: #64748b;
-    --slate-600: #475569;
-    --slate-700: #334155;
-    --slate-800: #1e293b;
-    --sky-50: #f0f9ff;
-    --sky-100: #e0f2fe;
-    --sky-200: #bae6fd;
-    --sky-400: #38bdf8;
-    --sky-500: #0ea5e9;
-    --sky-600: #0284c7;
-    --sky-700: #0369a1;
-    --green: #16a34a;
-    --green-bg: #f0fdf4;
-    --green-border: #bbf7d0;
-    --yellow: #ca8a04;
-    --yellow-bg: #fefce8;
-    --yellow-border: #fef08a;
-    --red: #dc2626;
-    --red-bg: #fef2f2;
-    --red-border: #fecaca;
-    --radius: 14px;
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-    --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
-    --shadow-lg: 0 8px 40px rgba(0,0,0,0.08);
+    --pink-50: #fdf2f8;
+    --pink-100: #fce7f3;
+    --pink-200: #fbcfe8;
+    --pink-300: #f9a8d4;
+    --pink-400: #f472b6;
+    --pink-500: #ec4899;
+    --pink-600: #db2777;
+    --pink-700: #be185d;
+    --rose-50: #fff1f2;
+    --rose-100: #ffe4e6;
+    --warm-50: #fefce8;
+    --warm-100: #fef3c7;
+    --gray-50: #fafafa;
+    --gray-100: #f5f5f5;
+    --gray-200: #e5e5e5;
+    --gray-300: #d4d4d4;
+    --gray-400: #a3a3a3;
+    --gray-500: #737373;
+    --gray-600: #525252;
+    --gray-700: #404040;
+    --gray-800: #262626;
+    --green: #059669;
+    --green-bg: #ecfdf5;
+    --yellow: #d97706;
+    --yellow-bg: #fffbeb;
+    --red: #e11d48;
+    --red-bg: #fff1f2;
+    --red-border: #fecdd3;
+    --radius: 16px;
   }
 
   html { font-size: 16px; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--slate-50);
-    color: var(--slate-700);
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(160deg, var(--pink-50) 0%, #fff5f7 40%, #fef1f6 100%);
+    color: var(--gray-700);
     min-height: 100dvh;
     -webkit-font-smoothing: antialiased;
     padding-top: env(safe-area-inset-top);
@@ -59,24 +59,38 @@
     padding-right: env(safe-area-inset-right);
     padding-bottom: env(safe-area-inset-bottom);
     -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
   }
 
-  /* ── noise texture overlay ── */
   body::before {
     content: '';
     position: fixed;
-    inset: 0;
-    opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    top: -50%;
+    right: -30%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(244,114,182,0.08) 0%, transparent 70%);
     pointer-events: none;
-    z-index: 999;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -30%;
+    left: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(236,72,153,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
   }
 
   .app {
     max-width: 520px;
     margin: 0 auto;
     padding: 24px 16px 80px;
+    position: relative;
+    z-index: 1;
   }
 
   /* ── header ── */
@@ -92,15 +106,15 @@
   }
 
   header .icon {
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, var(--sky-400), var(--sky-600));
-    border-radius: 14px;
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, var(--pink-400), var(--pink-600));
+    border-radius: 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 16px;
-    box-shadow: 0 4px 16px rgba(14, 165, 233, 0.25);
+    box-shadow: 0 4px 20px rgba(236, 72, 153, 0.3);
   }
 
   header .icon svg {
@@ -114,28 +128,30 @@
   }
 
   header h1 {
-    font-family: 'Instrument Serif', serif;
-    font-weight: 400;
-    font-size: 1.75rem;
-    color: var(--slate-800);
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 1.8rem;
+    color: var(--gray-800);
     letter-spacing: -0.01em;
   }
 
   header .date {
     font-size: 0.82rem;
-    color: var(--slate-400);
+    color: var(--gray-400);
     margin-top: 6px;
     font-weight: 400;
   }
 
   /* ── card ── */
   .card {
-    background: white;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: var(--radius);
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--slate-100);
+    box-shadow: 0 4px 24px rgba(236, 72, 153, 0.06), 0 1px 3px rgba(0,0,0,0.04);
+    border: 1px solid rgba(251, 207, 232, 0.4);
     padding: 28px 24px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     animation: fadeUp 0.5s ease-out both;
   }
 
@@ -161,26 +177,26 @@
 
   .field label {
     display: block;
-    font-size: 0.72rem;
-    font-weight: 500;
+    font-size: 0.7rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--slate-400);
+    letter-spacing: 0.08em;
+    color: var(--pink-400);
     margin-bottom: 8px;
   }
 
   .field input {
     width: 100%;
     height: 56px;
-    border: 1.5px solid var(--slate-200);
-    border-radius: 10px;
+    border: 1.5px solid var(--pink-200);
+    border-radius: 12px;
     padding: 0 16px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--slate-800);
+    font-weight: 600;
+    color: var(--gray-800);
     text-align: center;
-    background: var(--slate-50);
+    background: rgba(253, 242, 248, 0.5);
     transition: all 0.2s ease;
     outline: none;
     -moz-appearance: textfield;
@@ -193,15 +209,15 @@
   }
 
   .field input::placeholder {
-    color: var(--slate-300);
+    color: var(--pink-300);
     font-weight: 400;
     font-size: 1.1rem;
   }
 
   .field input:focus {
-    border-color: var(--sky-400);
+    border-color: var(--pink-400);
     background: white;
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
+    box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.15);
   }
 
   .slash {
@@ -210,7 +226,7 @@
     padding-bottom: 10px;
     font-size: 1.6rem;
     font-weight: 300;
-    color: var(--slate-300);
+    color: var(--pink-300);
     user-select: none;
   }
 
@@ -218,23 +234,16 @@
     width: 100%;
     height: 52px;
     border: none;
-    border-radius: 10px;
-    background: linear-gradient(135deg, var(--sky-500), var(--sky-600));
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--pink-500), var(--pink-600));
     color: white;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.92rem;
-    font-weight: 500;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
     letter-spacing: 0.02em;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 8px rgba(14, 165, 233, 0.25);
-  }
-
-  @media (hover: hover) {
-    .save-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(14, 165, 233, 0.35);
-    }
+    box-shadow: 0 4px 14px rgba(236, 72, 153, 0.3);
   }
 
   .save-btn:active {
@@ -242,6 +251,58 @@
     opacity: 0.85;
   }
 
+  /* ── toggle past button ── */
+  .toggle-past-btn {
+    width: 100%;
+    height: 40px;
+    border: none;
+    background: transparent;
+    color: var(--pink-500);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .toggle-past-btn:active { opacity: 0.7; }
+
+  .past-form {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--pink-100);
+  }
+
+  .past-form input[type="date"],
+  .past-form input[type="time"] {
+    width: 100%;
+    height: 52px;
+    border: 1.5px solid var(--pink-200);
+    border-radius: 12px;
+    padding: 0 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--gray-800);
+    background: rgba(253, 242, 248, 0.5);
+    outline: none;
+    transition: all 0.2s ease;
+    -webkit-appearance: none;
+  }
+
+  .past-form input[type="date"]:focus,
+  .past-form input[type="time"]:focus {
+    border-color: var(--pink-400);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.15);
+  }
+
+  .past-save-btn {
+    background: linear-gradient(135deg, var(--pink-600), var(--pink-700)) !important;
+    margin-top: 6px;
+  }
 
   /* ── toast ── */
   .toast {
@@ -249,13 +310,13 @@
     bottom: calc(24px + env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%) translateY(80px);
-    background: var(--slate-800);
+    background: var(--gray-800);
     color: white;
     padding: 12px 24px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 0.85rem;
     font-weight: 500;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
     z-index: 100;
     opacity: 0;
     transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -276,42 +337,28 @@
   }
 
   .records-header h2 {
-    font-family: 'Instrument Serif', serif;
-    font-weight: 400;
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
     font-size: 1.2rem;
-    color: var(--slate-800);
+    color: var(--gray-800);
   }
 
   .records-header .count {
-    font-size: 0.75rem;
-    color: var(--slate-400);
-    background: var(--slate-100);
-    padding: 3px 10px;
+    font-size: 0.72rem;
+    color: var(--pink-500);
+    background: var(--pink-100);
+    padding: 4px 12px;
     border-radius: 20px;
-    font-weight: 500;
-  }
-
-  .empty-state {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--slate-400);
-    font-size: 0.88rem;
-    line-height: 1.6;
-  }
-
-  .empty-state .empty-icon {
-    font-size: 2rem;
-    margin-bottom: 12px;
-    opacity: 0.4;
+    font-weight: 600;
   }
 
   /* ── record rows ── */
   .record {
     display: flex;
     align-items: center;
-    padding: 14px 16px;
-    border-radius: 10px;
-    margin-bottom: 6px;
+    padding: 14px 14px;
+    border-radius: 12px;
+    margin-bottom: 4px;
     transition: background 0.15s ease;
     animation: fadeIn 0.3s ease-out both;
   }
@@ -321,157 +368,83 @@
     to { opacity: 1; transform: translateX(0); }
   }
 
-  .record:hover {
-    background: var(--slate-50);
+  .record:active {
+    background: var(--pink-50);
   }
 
   .record .dot {
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     margin-right: 14px;
     flex-shrink: 0;
   }
 
-  .record .dot.green { background: var(--green); box-shadow: 0 0 6px rgba(22,163,74,0.3); }
-  .record .dot.yellow { background: var(--yellow); box-shadow: 0 0 6px rgba(202,138,4,0.3); }
-  .record .dot.red { background: var(--red); box-shadow: 0 0 6px rgba(220,38,38,0.3); }
+  .record .dot.green { background: var(--green); box-shadow: 0 0 8px rgba(5,150,105,0.3); }
+  .record .dot.yellow { background: var(--yellow); box-shadow: 0 0 8px rgba(217,119,6,0.3); }
+  .record .dot.red { background: var(--red); box-shadow: 0 0 8px rgba(225,29,72,0.3); }
 
   .record .rec-date {
     flex: 1;
-    font-size: 0.85rem;
-    color: var(--slate-500);
+    font-size: 0.82rem;
+    color: var(--gray-500);
     font-weight: 400;
   }
 
   .record .rec-values {
     font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--slate-800);
+    font-weight: 700;
+    color: var(--gray-800);
     letter-spacing: -0.01em;
   }
 
   .record .rec-values span {
     font-weight: 400;
-    color: var(--slate-400);
-    margin: 0 3px;
+    color: var(--pink-300);
+    margin: 0 2px;
   }
 
   .record .delete-btn {
-    margin-left: 12px;
+    margin-left: 10px;
     width: 32px;
     height: 32px;
     min-width: 32px;
     border: none;
     background: transparent;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
+    opacity: 0.4;
     transition: all 0.15s ease;
-    color: var(--slate-400);
+    color: var(--gray-400);
   }
 
-  .record:hover .delete-btn { opacity: 1; }
-  .delete-btn:hover { background: var(--red-bg); color: var(--red); }
-
-  @media (hover: none) and (pointer: coarse) {
-    .record .delete-btn { opacity: 0.5; }
-    .record .delete-btn:active { opacity: 1; background: var(--red-bg); color: var(--red); }
-  }
-
-  /* ── toggle past button ── */
-  .toggle-past-btn {
-    width: 100%;
-    height: 40px;
-    border: none;
-    background: transparent;
-    color: var(--sky-600);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    margin-top: 12px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
-    touch-action: manipulation;
-  }
-
-  .toggle-past-btn:active {
-    opacity: 0.7;
-  }
-
-  .past-form {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid var(--slate-100);
-  }
-
-  .past-form input[type="date"],
-  .past-form input[type="time"] {
-    width: 100%;
-    height: 52px;
-    border: 1.5px solid var(--slate-200);
-    border-radius: 10px;
-    padding: 0 12px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--slate-800);
-    background: var(--slate-50);
-    outline: none;
-    transition: all 0.2s ease;
-    -webkit-appearance: none;
-    touch-action: manipulation;
-  }
-
-  .past-form input[type="date"]:focus,
-  .past-form input[type="time"]:focus {
-    border-color: var(--sky-400);
-    background: white;
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.12);
-  }
-
-  .past-save-btn {
-    background: linear-gradient(135deg, var(--sky-600), var(--sky-700)) !important;
-    margin-top: 6px;
-  }
+  .delete-btn:active { opacity: 1; background: var(--red-bg); color: var(--red); }
 
   /* ── action buttons ── */
   .action-row {
     display: flex;
     gap: 10px;
-    margin-top: 12px;
+    margin-top: 16px;
   }
 
-  .export-btn {
+  .action-btn {
     flex: 1;
     height: 44px;
-    border: 1.5px solid var(--slate-200);
-    border-radius: 10px;
-    background: var(--slate-50);
-    color: var(--slate-600);
-    font-family: 'DM Sans', sans-serif;
+    border: 1.5px solid var(--pink-200);
+    border-radius: 12px;
+    background: rgba(253, 242, 248, 0.5);
+    color: var(--pink-600);
+    font-family: 'Outfit', sans-serif;
     font-size: 0.85rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
   }
 
-  @media (hover: hover) {
-    .export-btn:hover {
-      background: var(--slate-100);
-      border-color: var(--slate-300);
-    }
-    .clear-btn:hover {
-      background: var(--red-border);
-      border-color: var(--red);
-    }
-  }
-
-  .export-btn:active {
+  .action-btn:active {
     transform: scale(0.96);
     opacity: 0.8;
   }
@@ -482,11 +455,6 @@
     background: var(--red-bg);
   }
 
-  .clear-btn:active {
-    transform: scale(0.96);
-    opacity: 0.8;
-  }
-
   /* ── legend ── */
   .legend {
     display: flex;
@@ -494,18 +462,18 @@
     justify-content: center;
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid var(--slate-100);
+    border-top: 1px solid var(--pink-100);
   }
 
   .legend-item {
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 0.7rem;
-    color: var(--slate-400);
+    font-size: 0.68rem;
+    color: var(--gray-400);
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .legend-item .ldot {
@@ -518,26 +486,24 @@
   .legend-item .ldot.yellow { background: var(--yellow); }
   .legend-item .ldot.red { background: var(--red); }
 
-  /* ── responsive / iPhone 16 (393px wide) ── */
+  /* ── responsive / iPhone 16 ── */
   @media (max-width: 480px) {
     .app { padding: 16px 16px calc(80px + env(safe-area-inset-bottom)); }
     .card { padding: 22px 18px; }
     .field input { height: 52px; font-size: 1.35rem; }
-    header h1 { font-size: 1.5rem; }
+    header h1 { font-size: 1.55rem; }
     .save-btn { height: 50px; font-size: 0.95rem; }
-    .record { padding: 14px 12px; }
-    .record .rec-date { font-size: 0.78rem; }
-    .record .rec-values { font-size: 1rem; }
+    .record { padding: 12px 10px; }
+    .record .rec-date { font-size: 0.75rem; }
+    .record .rec-values { font-size: 0.95rem; }
   }
 
-  /* iPhone 16 Pro Max & larger phones */
   @media (max-width: 430px) and (min-height: 800px) {
     header { padding: 28px 0 24px; }
     .field input { height: 54px; font-size: 1.4rem; }
     .save-btn { height: 52px; }
   }
 
-  /* standalone PWA mode */
   @media (display-mode: standalone) {
     header { padding-top: 12px; }
   }
@@ -601,8 +567,8 @@
     </div>
     <div id="recordsList"></div>
     <div class="action-row">
-      <button class="export-btn" id="exportBtn">Copy All</button>
-      <button class="export-btn clear-btn" id="clearBtn">Clear All</button>
+      <button class="action-btn" id="exportBtn" type="button">Copy All</button>
+      <button class="action-btn clear-btn" id="clearBtn" type="button">Clear All</button>
     </div>
     <div class="legend">
       <div class="legend-item"><div class="ldot green"></div>Normal</div>
@@ -625,7 +591,6 @@
   const toast = document.getElementById('toast');
   const todayDate = document.getElementById('todayDate');
 
-  // Show today's date
   function formatDate(dateStr) {
     const d = new Date(dateStr + 'T12:00:00');
     return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
@@ -638,50 +603,42 @@
 
   todayDate.textContent = formatDate(getTodayStr());
 
-
-  // Get status color
   function getStatus(sys, dia) {
     if (sys >= 140 || dia >= 90) return 'red';
     if (sys >= 120 || dia >= 80) return 'yellow';
     return 'green';
   }
 
-  // Load records
   function getRecords() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    } catch { return []; }
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch { return []; }
   }
 
   function saveRecords(records) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
   }
 
-  // Show toast
   function showToast(msg) {
     toast.textContent = msg;
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 2000);
   }
 
-  // Render
   function render() {
     const records = getRecords();
     if (records.length === 0) {
       recordsCard.style.display = 'none';
       return;
     }
-
     recordsCard.style.display = 'block';
     recordCount.textContent = records.length + (records.length === 1 ? ' reading' : ' readings');
-
     recordsList.innerHTML = records.map((r, i) => {
       const status = getStatus(r.sys, r.dia);
       return `<div class="record" style="animation-delay:${i * 0.03}s">
         <div class="dot ${status}"></div>
         <div class="rec-date">${formatDate(r.date)}${r.time ? ' ' + r.time : ''}</div>
         <div class="rec-values">${r.sys}<span>/</span>${r.dia}</div>
-        <button class="delete-btn" onclick="deleteRecord(${i})" title="Delete">
+        <button class="delete-btn" onclick="deleteRecord(${i})" type="button" title="Delete">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>`;
@@ -696,24 +653,19 @@
       showToast('Enter valid values');
       return;
     }
-
     const records = getRecords();
     const now = new Date();
     const time = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
     records.unshift({ date: getTodayStr(), time, sys, dia });
     saveRecords(records);
     render();
-
     sysInput.value = '';
     diaInput.value = '';
     showToast('Reading saved');
   }
 
   saveBtn.addEventListener('click', handleSave);
-  saveBtn.addEventListener('touchend', function(e) {
-    e.preventDefault();
-    handleSave();
-  });
+  saveBtn.addEventListener('touchend', function(e) { e.preventDefault(); handleSave(); });
 
   // Delete
   function deleteRecord(index) {
@@ -732,13 +684,15 @@
   const pastSys = document.getElementById('pastSys');
   const pastDia = document.getElementById('pastDia');
 
-  togglePastBtn.addEventListener('click', () => {
+  function handleTogglePast() {
     const open = pastForm.style.display === 'none';
     pastForm.style.display = open ? 'block' : 'none';
-    togglePastBtn.textContent = open ? '− Cancel' : '+ Add Past Record';
+    togglePastBtn.textContent = open ? '- Cancel' : '+ Add Past Record';
     if (open) pastDate.value = getTodayStr();
-  });
-  togglePastBtn.addEventListener('touchend', (e) => { e.preventDefault(); togglePastBtn.click(); });
+  }
+
+  togglePastBtn.addEventListener('click', handleTogglePast);
+  togglePastBtn.addEventListener('touchend', function(e) { e.preventDefault(); handleTogglePast(); });
 
   // Save past record
   function handleSavePast() {
@@ -768,24 +722,16 @@
   }
 
   document.getElementById('savePastBtn').addEventListener('click', handleSavePast);
-  document.getElementById('savePastBtn').addEventListener('touchend', (e) => { e.preventDefault(); handleSavePast(); });
-
-  // Enter key saves
-  function handleKey(e) {
-    if (e.key === 'Enter' && !saveBtn.disabled) saveBtn.click();
-  }
-  sysInput.addEventListener('keydown', handleKey);
-  diaInput.addEventListener('keydown', handleKey);
+  document.getElementById('savePastBtn').addEventListener('touchend', function(e) { e.preventDefault(); handleSavePast(); });
 
   // Export
-  document.getElementById('exportBtn').addEventListener('click', () => {
+  function handleExport() {
     const records = getRecords();
     if (records.length === 0) { showToast('No records to copy'); return; }
     const text = records.map(r => formatDate(r.date) + (r.time ? ' ' + r.time : '') + ' | ' + r.sys + '/' + r.dia).join('\n');
     navigator.clipboard.writeText(text).then(() => {
       showToast('Copied to clipboard');
     }).catch(() => {
-      // fallback for iOS
       const ta = document.createElement('textarea');
       ta.value = text;
       ta.style.position = 'fixed';
@@ -796,21 +742,30 @@
       document.body.removeChild(ta);
       showToast('Copied to clipboard');
     });
-  });
+  }
+
+  document.getElementById('exportBtn').addEventListener('click', handleExport);
+  document.getElementById('exportBtn').addEventListener('touchend', function(e) { e.preventDefault(); handleExport(); });
 
   // Clear all
-  document.getElementById('clearBtn').addEventListener('click', () => {
+  function handleClear() {
     if (getRecords().length === 0) { showToast('No records'); return; }
     if (confirm('Delete all records?')) {
       localStorage.removeItem(STORAGE_KEY);
       render();
       showToast('All records cleared');
     }
-  });
+  }
 
-  // Init
+  document.getElementById('clearBtn').addEventListener('click', handleClear);
+  document.getElementById('clearBtn').addEventListener('touchend', function(e) { e.preventDefault(); handleClear(); });
+
+  // Enter key saves
+  function handleKey(e) { if (e.key === 'Enter') saveBtn.click(); }
+  sysInput.addEventListener('keydown', handleKey);
+  diaInput.addEventListener('keydown', handleKey);
+
   render();
-  sysInput.focus();
 </script>
 
 </body>
